@@ -1,0 +1,61 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title" : "Waste Collection Coverage Percentage over Total Population",
+    "data": {
+      "url": "https://raw.githubusercontent.com/pduo0004/Data-Visualisation-2/main/country_level_data_0.csv",
+      "format": {"type": "csv"}
+    },
+    "transform": [
+      {"filter": "datum.waste_collection_coverage_total_percent_of_population !== 'NA'"},
+      {
+        "aggregate": [{"op": "mean", "field": "waste_collection_coverage_total_percent_of_population", "as": "average_coverage"}],
+        "groupby": ["income_id"]
+     
+    },
+    {"calculate": "datum.income_id === 'HIC' ? 'High Income Country' : (datum.income_id === 'LIC' ? 'Low Income Country' : (datum.income_id === 'LMC' ? 'Low Middle Income Country' : (datum.income_id === 'UMC' ? 'Upper Middle Income Country' : datum.income_id)))", "as": "IncomeTypeLabel"}
+    
+    ],
+    "params": [
+        {
+          "name": "highlight",
+          "select": {"type": "point", "on": "pointerover"}
+        },
+        {"name": "select", "select": "point"}
+      ],
+      "mark": {
+        "type": "bar",
+        
+        "stroke": "black",
+        "cursor": "pointer"
+      },
+    
+    "encoding": {
+      "y": {"field": "IncomeTypeLabel", "type": "nominal", "title": "Income Level"},
+      "x": {"field": "average_coverage", "type": "quantitative", "title": "Waste Average Collection Percentage (%)"},
+      "color": {"field" : "IncomeTypeLabel",
+                "title" : "Income Level"},
+                "fillOpacity": {
+                    "condition": {"param": "select", "value": 1},
+                    "value": 0.3
+                  },
+                  "strokeWidth": {
+                    "condition": [
+                      {
+                        "param": "select",
+                        "empty": false,
+                        "value": 2
+                      },
+                      {
+                        "param": "highlight",
+                        "empty": false,
+                        "value": 1
+                      }
+                    ],
+                    "value": 0
+                  },
+                  "tooltip": [
+                    {"field": "IncomeTypeLabel", "type": "nominal", "title": "Income Level"},
+                    {"field": "average_coverage", "type": "quantitative", "title": "Percentage"}
+                  ]          
+    }
+  }
