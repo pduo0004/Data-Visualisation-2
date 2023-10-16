@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+    <title>Data Visualisation</title>
+
+    <script src="visualisation.js"></script>
+
+    <style> 
+           body {
+            width: 95%; 
+            max-width: 1400px; 
+            margin: 30px;
+        }
+    .center-text {
+        text-align: center; 
+        
+    }
+    .right-aligned {
+            text-align: right;
+            margin-right: 250px; 
+        }
+    .chart-container {
+            display: flex;
+            justify-content: space-between;
+            
+        }
+        .chart {
+            width: 50%;
+            margin-right:  0 px; 
+        }
+
+        .centered-chart {
+            margin-left: auto;
+            margin-right: auto;
+            
+        }
+        .figure-container figure {
+            display: inline-block;
+            margin-left: 20px; 
+        }
+            h1 {
+                font-family: 'Impact';
+                font-size: 70px;
+                color: #4e79a7;
+            }
+            
+            h2 {
+                font-family: 'Georgia', serif;
+                font-size: 30px;
+            }
+            
+            h3 {
+                font-family: 'Georgia', serif;
+                font-size: 25px;
+            }
+
+            h4 {
+                font-family: Georgia, serif;
+                font-size: 22px;
+                font-style: italic;
+                margin-left: 20px;
+            }
+
+            p {
+                font-family: Georgia, serif;
+                font-size: 18px;
+                
+            }
+
+    </style>
+</head>
+<body>
+    <div class="center-text">
+        <h1>WHAT A WASTE!</h1>
+        <h2> GLOBAL WASTE DISTRIBUTION </h2>
+    </div>
+  
+    <p>Explore the worldwide patterns of waste management and environmental sustainability. Discover insights into waste collection, recycling efforts, and environmental initiatives across countries.</p>
+   
+    <h3> 1. Global GDP and Population </h3>
+    <div class="chart-container">
+        <div class="chart" id="geo_chart"></div>
+
+        <div class="chart" id="geomap_chart"></div>
+
+    </div>
+    
+
+        <figure>
+            <figcaption><i>Figure 1: Global GDP Distribution Map.</i></figcaption>
+        </figure>
+
+        <figure class="right-aligned">
+            <figcaption><i>Figure 2: Population Distribution Map.</i></figcaption>
+        </figure>
+
+    <p> The worldwide distribution of Gross Domestic Product (GDP) showcases the economic wealth of different countries, allowing for comparing and contrasting GDP levels across regions. The disparities in economic prosperity offer a comprehensive view of the global economic landscape. The distribution of the world's population across different countries and continents showcases population density, highlighting densely populated areas and sparsely inhabited regions. It offers a compelling visual narrative of human settlement patterns, aiding in the understanding of global demographics and urbanization trends. </p>
+
+
+    <div style="margin-left: 200px" id="scatter_chart" ></div>
+       
+        <div style="margin-left: 400px">
+        <figure>
+            <figcaption><i>Figure 3: Relationship between GDP, Waste Generation and Population.</i></figcaption>
+        </figure>
+        </div>
+    <p> The economic prosperity of a country (GDP) does not correlates with the amount of waste it generates as wealthier countries produce less waste. However, waste generation scales concerns the population. Larger populations tend to produce more waste due to increased consumption and industrial activities. </p>
+   <h3> 2. Waste Types</h3> 
+    <h4> 2.1 Waste Composition </h4>
+    <div id="stackedbar_chart" style="width: 1200px; height: 400px; overflow: auto; margin-left: 80px;"></div>
+    
+    <div style="margin-left: 500px">
+        <figure>
+            <figcaption><i>Figure 4: Waste Type per Country.</i></figcaption>
+        </figure>
+        </div>
+    
+    <p> The significance of organic waste management strategies is highlighted, urging countries to focus on sustainable practices and reduce their environmental footprint, especially in the context of growing concerns about food waste and its environmental impact. </p>
+    
+    <h4> 2.2 Special Waste Types </h4>
+    
+    <div style="margin-left: 30px"; id="multiple_bar_chart"></div>
+
+    <div style="margin-left: 350px"; id="multiple_bar_chart_2"></div>
+
+    <div style="margin-left: 500px">
+        <figure>
+            <figcaption><i>Figure 5: Special Waste Types per Year.</i></figcaption>
+        </figure>
+        </div>
+
+    <p> The differences in waste production and management strategies, shedding light on the environmental challenges faced by each nation. A clear comparison of special waste types is offered to aid in understanding the waste disposal landscape and identifying potential areas for sustainable waste management practices. </p>    
+    
+    <h4> 2.3 Solid Waste Management </h4>
+
+    <div id="pie_chart_2"></div>
+
+    <div id="pie_chart_3"></div>
+
+    <div id="pie_chart_4"></div>
+
+    <div class="figure-container">
+        <figure style="margin-left: 70px">
+            <figcaption><i>Figure 6: Nation Agency Enforcement.</i></figcaption>
+        </figure>
+
+        <figure style="margin-left: 140px">
+            <figcaption><i>Figure 7: Information System for Solid Waste Management.</i></figcaption>
+        </figure>
+
+        <figure style="margin-left: 950px">
+            <figcaption><i>Figure 8: National Law Governing for Solid Waste Management.</i></figcaption>
+        </figure>
+
+        </div>
+
+    <p>  The majority of the countries or regions represented by the data have implemented the corresponding policies, practices, or regulations related to solid waste management.</p>
+    
+    <h4> 2.4 Waste Collection Coverage Percentage </h4>
+
+    <div style="margin-left: 100px"; id="bar_chart"></div>
+
+    <div id="bar_chart_2"></div>
+
+    <div class="figure-container">
+        <figure style="margin-left: 150px">
+            <figcaption><i>Figure 9: Waste Collection Coverage Percentage over Total Population.</i></figcaption>
+        </figure>
+
+        <figure>
+            <figcaption><i>Figure 10: Waste Collection Coverage Percentage over Total Waste.</i></figcaption>
+        </figure>
+
+       
+        </div>
+</body>
+</html>
