@@ -1,0 +1,39 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title" : "Nation Agency to Enforce Solid Waste Laws and Regulations",
+    "width": 200,
+    "height": 200,
+    "data": {
+      "url": "https://raw.githubusercontent.com/pduo0004/Data-Visualisation-2/main/country_level_data_0.csv",
+      "format": {"type": "csv"}
+    },
+    "transform": [
+      {"filter": "datum.other_information_national_agency_to_enforce_solid_waste_laws_and_regulations !== 'NA'"},
+      {
+        "aggregate": [{"op": "count", "as": "count"}],
+        "groupby": ["other_information_national_agency_to_enforce_solid_waste_laws_and_regulations"]
+      }
+    ],
+  
+  "layer": [{
+    "mark": {"type": "arc", "innerRadius": 25, "stroke": "#fff"}
+  },{
+    "mark": {"type": "text", "radiusOffset": 10},
+    "encoding": {
+      "text": {"field": "count", "type": "quantitative"}
+    }
+  }],
+  "encoding": {
+    "theta": {"field": "count", "type": "quantitative", "stack": true},
+    "radius": {"field": "count", "scale": {"type": "sqrt", "zero": true, "rangeMin": 50}},
+    "color": {"field": "other_information_national_agency_to_enforce_solid_waste_laws_and_regulations", "type": "nominal", "title" : "National Agency Enforcement",
+            "scale": {
+        "domain": ["Yes", "No", "None"],
+        "range": ["#1f77b4", "#ff7f0e", "#2ca02c"]
+      }},
+    "tooltip": [
+        {"field": "other_information_national_agency_to_enforce_solid_waste_laws_and_regulations", "type": "nominal", "title": "Value"},
+        {"field": "count", "type": "quantitative", "title": "Count"}
+      ]
+  }
+}
