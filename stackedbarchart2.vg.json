@@ -1,0 +1,40 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Waste Composition",
+    
+    "height": 300,
+    "data": {
+        "url": "https://raw.githubusercontent.com/pduo0004/Data-Visualisation-2/main/country_level_data_0.csv",
+        "format": {"type": "csv"}
+    },
+    "transform": [
+        {"fold": ["composition_food_organic_waste_percent", "composition_glass_percent", "composition_metal_percent", "composition_paper_cardboard_percent", "composition_plastic_percent"], "as": ["WasteType", "Percentage"]},
+        {"calculate": "datum.WasteType === 'composition_food_organic_waste_percent' ? 'Food Organic' : (datum.WasteType === 'composition_glass_percent' ? 'Glass' : (datum.WasteType === 'composition_metal_percent' ? 'Metal' : (datum.WasteType === 'composition_paper_cardboard_percent' ? 'Paper Cardboard' : (datum.WasteType === 'composition_plastic_percent' ? 'Plastic' : datum.WasteType))))", "as": "WasteTypeLabel"}
+    ],
+    "mark": "bar",
+    "selection": {
+        "legendSelect": {
+            "type": "multi",
+            "fields" : ["WasteTypeLabel"], 
+            "bind" : "legend"
+        }
+    },
+    "encoding": {
+        "x": {"field": "country_name", "type": "nominal", "axis": {"title": "Country Name"}},
+        "y": {"aggregate": "sum", "field": "Percentage", "axis": {"title": "Percentage (%)"}},
+        "color": {
+            "field": "WasteTypeLabel",
+            "type": "nominal",
+            "scale": {"scheme": "tableau10"},
+            "legend": {"title": "Waste Type"}
+        },
+        "opacity": {
+            "condition": {"selection": "legendSelect", "value": 1},
+            "value": 0.1
+        },
+        "tooltip": [
+            {"field": "WasteTypeLabel", "title": "Waste Type"},
+            {"field": "Percentage", "title": "Percentage"}
+        ]
+    }
+}
