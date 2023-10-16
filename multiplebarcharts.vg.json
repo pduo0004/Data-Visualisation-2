@@ -1,0 +1,103 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Special Waste Types per Year",
+    "data": {
+      "url": "https://raw.githubusercontent.com/pduo0004/Data-Visualisation-2/main/country_level_data_0.csv",
+      "format": {"type": "csv"}
+    },
+   
+    "transform": [
+        {"filter": {"field": "country_name", "oneOf": ["China", "Indonesia", "Brazil", "India", "United States", "Australia"]}}
+      ],
+
+  
+    "hconcat": [
+        
+      {
+        "width": 200,
+        "height" : 250,
+        "mark": "bar",
+        "encoding": {
+          "x": {"field": "country_name", "type": "nominal", "title": "Country"},
+          "y": {"field": "special_waste_e_waste_tons_year", "type": "quantitative", "title": "Electronic Waste (Tons/year)", "scale": {"domain": [0, 35000000]}},
+          "size" : {"value" : 27},
+          "color": {
+            "field": "country_name",
+            "type": "nominal", "title": "Country",
+            "scale" : {"range": ["#76b7b2", "#ff9da7", "#59a14f", "#cc79a7", "#f28e2b", "#4e79a7"]}
+            
+          },
+          "tooltip": [
+            {"field": "country_name", "type": "nominal", "title": "Country"},
+            {"field": "special_waste_e_waste_tons_year", "type": "quantitative", "title": "E-Waste"}
+          ]
+          
+        }
+      },
+      {
+        "width": 200,
+        "height" : 250,
+        "mark": "bar",
+        "encoding": {
+          "x": {"field": "country_name", "type": "nominal", "title": "Country"},
+          "y": {"field": "special_waste_hazardous_waste_tons_year", "type": "quantitative", "title": "Hazardous Waste (Tons/year)"},
+          "size" : {"value" : 27},
+          "color": {
+            "field": "country_name",
+            "type": "nominal", "title": "Country",
+            "scale" : {"range": ["#999933", "#ff7f0e", "#44aa99", "#cc79a7", "#f0e442", "#888888"]}
+            
+          },
+          "tooltip": [
+            {"field": "country_name", "type": "nominal", "title": "Country"},
+            {"field": "special_waste_hazardous_waste_tons_year", "type": "quantitative", "title": "Hazardous Waste"}
+          ]
+          
+        }
+      },
+      {
+        "width": 200,
+        "height" : 250,
+        "mark": "bar",
+        "encoding": {
+          "x": {"field": "country_name", "type": "nominal", "title": "Country"},
+          "y": {"field": "special_waste_agricultural_waste_tons_year", "type": "quantitative", "title": "Agricultural Waste (Tons/year)"},
+          "size" : {"value" : 27},
+          "color": {
+            "field": "country_name",
+            "type": "nominal", "title": "Country",
+            "scale" : {"range": ["#999933", "#ff7f0e", "#44aa99", "#cc79a7", "#f0e442", "#888888"]}
+            
+          },
+          "tooltip": [
+            {"field": "country_name", "type": "nominal", "title": "Country"},
+            {"field": "special_waste_agricultural_waste_tons_year", "type": "quantitative", "title": "Agricultural Waste"}
+          ]
+          
+        }
+      },
+  
+      {
+        "width": 200,
+        "height" : 250,
+        "mark": "bar",
+        "encoding": {
+          "x": {"field": "country_name", "type": "nominal", "title": "Country"},
+          "y": {"field": "special_waste_construction_and_demolition_waste_tons_year", "type": "quantitative", "title": "Construction and Demolition Waste (Tons/year)", "scale": {"domain": [0, 4000000000]}},
+          "size" : {"value" : 27},
+          "color": {
+            "field": "country_name",
+            "type": "nominal", "title": "Country",
+            "scale" : {"range": ["#999933", "#ff7f0e", "#44aa99", "#cc79a7", "#f0e442", "#888888"]}
+          },
+          "tooltip": [
+            {"field": "country_name", "type": "nominal", "title": "Country"},
+            {"field": "special_waste_construction_and_demolition_waste_tons_year", "type": "quantitative", "title": "Construction and Demolition Waste"}
+          ]
+          
+        }
+      }
+   
+    ]
+  }
+  
