@@ -1,0 +1,109 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Relationship Between GDP and Waste Generation",
+    "width": 800,
+    "height": 600,
+    "data": {
+      "url": "https://raw.githubusercontent.com/pduo0004/Data-Visualisation-2/main/country_level_data_0.csv",
+      "format": {"type": "csv"}
+    },
+    "layer": [
+      {
+        "mark": "circle",
+        "encoding": {
+          "x": {
+            "field": "gdp",
+            "type": "quantitative",
+            "title": "GDP"
+          },
+          "y": {
+            "field": "total_msw_total_msw_generated_tons_year",
+            "type": "quantitative",
+            "title": "Total Waste Generated (tons/year)"
+          },
+          "size": {"field": "population_population_number_of_people", "type": "quantitative", "title": "Population", "scale": {"type": "sqrt"}},
+          "color": {
+            "field": "gdp",
+            "type": "quantitative",
+            "scale": {"scheme": "blueorange"},
+            "title": "GDP"
+          },          
+          "tooltip": [
+            {"field": "country_name", "type": "nominal", "title": "Country"},
+            {"field": "gdp", "type": "quantitative", "title": "GDP"},
+            {"field": "total_msw_total_msw_generated_tons_year", "type": "quantitative", "title": "Total Waste Generated (tons/year)"},
+            {"field": "population_population_number_of_people", "type": "quantitative", "title": "Population"}
+          ]
+        }
+      },
+      {
+        "mark": {"type": "text", "align": "left", "baseline": "middle", "dx": 5},
+        "encoding": {
+          "text": {"value": "China stands out with a GDP of 16092"},
+          "x": {"value": 20},
+          "y": {"value": 30}
+        }
+      },
+      {
+        "mark": {"type": "text", "align": "left", "baseline": "middle", "dx": 5},
+        "encoding": {
+          "text": {"value": "and a significant waste generation of 395081376 tons/year."},
+          "x": {"value": 1},
+          "y": {"value": 50}
+        }  
+      },
+      {
+        "mark": {"type": "text", "align": "left", "baseline": "middle", "dx": 5},
+        "encoding": {
+          "text": {"value": "Despite its impressive GDP of 61498, The USA grapples"},
+          "x": {"value": 270},
+          "y": {"value": 220}
+        }
+      },
+      {
+        "mark": {"type": "text", "align": "left", "baseline": "middle", "dx": 5},
+        "encoding": {
+          "text": {"value": "with a substantial waste burden, generating 265,224,528 tons/year,"},
+          "x": {"value": 250},
+          "y": {"value": 240}
+          
+        }
+      },
+      {
+        "mark": {"type": "text", "align": "left", "baseline": "middle", "dx": 5},
+        "encoding": {
+          "text": {"value": "underscoring the challenges of managing waste in highly developed economies."},
+          "x": {"value": 220},
+          "y": {"value": 260}
+          
+        }
+      },
+      {
+        "mark": {"type": "text", "align": "left", "baseline": "middle", "dx": 5},
+        "encoding": {
+          "text": {"value": "With robust GDP and relatively lower waste generation rates,"},
+          "x": {"value": 470},
+          "y": {"value": 520}
+        }
+      },
+      {
+        "mark": {"type": "text", "align": "left", "baseline": "middle", "dx": 5},
+        "encoding": {
+          "text": {"value": "some countries showcases an efficient economic model"},
+          "x": {"value": 420},
+          "y": {"value": 540}
+          
+        }
+      },
+      {
+        "mark": {"type": "text", "align": "left", "baseline": "middle", "dx": 5},
+        "encoding": {
+          "text": {"value": "emphasizing sustainable practices and resource management."},
+          "x": {"value": 470},
+          "y": {"value": 560}
+          
+        }
+      }
+    ]
+  }
+  
